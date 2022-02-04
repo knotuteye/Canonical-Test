@@ -20,3 +20,35 @@ function sanitizePostData(rawPost) {
     }
 
 }
+
+function generateCard(post) {
+    return `
+          <div class="card-box col-4">
+            <header class="card-header">
+              <h3 class="p-muted-heading u-no-margin--bottom">${post.topic}</h3>
+            </header>
+            <div class="p-card__content card-body">
+              <div class="">
+                <a href="${post.link}">
+                  <img
+                    alt=${post.title}
+                    
+                    src="${post.imageSource}"
+                    
+                  />
+                </a>
+              </div>
+              <h3 class="p-heading--4">
+                <a href="${post.link}">${post.title}</a>
+              </h3>
+              <p>
+                <em
+                  >By
+                  <a href="${post.author.link}">${post.author.name}</a>
+                  on ${post.date}</em>
+              </p>
+            </div>
+            <p class="p-card__footer card-footer">${post.postType}</p>
+          </div>
+      `
+}

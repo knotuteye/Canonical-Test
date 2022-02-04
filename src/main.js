@@ -8,16 +8,12 @@ const endpoint = "https://people.canonical.com/~anthonydillon/wp-json/wp/v2/post
 function sanitizePostData(rawPost) {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   const date = new Date(rawPost.date);
+  const topicArray = rawPost._embedded["wp:term"].filter(x => x.some(y => y.taxonomy == 'topic'))
 
   return {
-    // Check whether a topic object is available
-    topic: rawPost._embedded["wp:term"].filter(x => x.some(y => y.taxonomy == 'topic'))[0]
-      ?
-      // Use the provided topic if available
-      rawPost._embedded["wp:term"].filter(x => x.some(y => y.taxonomy == 'topic'))[0][0].name
-      // Else use 'Miscellaneous'
-      : 'Miscellaneous',
-    postType: 'Article',
+    // Problem: Post #3 has no embedded topic
+    // Solution: If an embedded topic is available, use topic else post.topic = 'Miscellaneous''
+    topic: topicArray[0] ? topicArray[0][0].name : 'Miscellaneous',
     link: rawPost.link,
     imageSource: rawPost.featured_media,
     title: rawPost.title.rendered,
@@ -34,7 +30,6 @@ function sanitizePostData(rawPost) {
 /**
  * This function accepts a formatted post object and returns a template literal.
  * @param post The formatted post object.
- * @returns string
  */
 function generateCard(post) {
   return `
@@ -63,7 +58,7 @@ function generateCard(post) {
                   on ${post.date}</em>
               </p>
             </div>
-            <p class="p-card__footer footer">${post.postType}</p>
+            <p class="p-card__footer footer">Article</p>
           </div>
       `
 }

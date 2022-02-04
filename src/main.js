@@ -1,28 +1,44 @@
+// API Endpoint
+const endpoint = "https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json";
+
+/**
+ * This function accepts a raw post object from the API response and returns a formatted post object with convenient fields.
+ * @param rawPost the post object from the API response
+ * @returns 
+ */
 function sanitizePostData(rawPost) {
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    const date = new Date(rawPost.date);
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  const date = new Date(rawPost.date);
 
-    return {
-        topic: rawPost._embedded["wp:term"].filter(x => x.some(y => y.taxonomy == 'topic'))[0]
-            ?
-            rawPost._embedded["wp:term"].filter(x => x.some(y => y.taxonomy == 'topic'))[0][0].name
-            : 'Miscellaenous',
-        postType: 'Article',
-        link: rawPost.link,
-        imageSource: rawPost.featured_media,
-        title: rawPost.title.rendered,
-        author: {
-            link: rawPost._embedded.author[0].link,
-            name: rawPost._embedded.author[0].name,
-        },
-        date: `${date.getDate()} ${months[date.getUTCMonth()]} ${date.getFullYear()}`
+  return {
+    // Check whether a topic object is available
+    topic: rawPost._embedded["wp:term"].filter(x => x.some(y => y.taxonomy == 'topic'))[0]
+      ?
+      // Use the provided topic if available
+      rawPost._embedded["wp:term"].filter(x => x.some(y => y.taxonomy == 'topic'))[0][0].name
+      // Else use 'Miscellaneous'
+      : 'Miscellaneous',
+    postType: 'Article',
+    link: rawPost.link,
+    imageSource: rawPost.featured_media,
+    title: rawPost.title.rendered,
+    author: {
+      link: rawPost._embedded.author[0].link,
+      name: rawPost._embedded.author[0].name,
+    },
+    date: `${date.getDate()} ${months[date.getUTCMonth()]} ${date.getFullYear()}`
 
-    }
+  }
 
 }
 
+/**
+ * This function accepts a formatted post object and returns a template literal.
+ * @param post The formatted post object.
+ * @returns string
+ */
 function generateCard(post) {
-    return `
+  return `
           <div class="p-card--highlighted col-4">
             <header>
               <h3 class="p-muted-heading u-no-margin--bottom">${post.topic}</h3>
@@ -53,9 +69,7 @@ function generateCard(post) {
       `
 }
 
-const endpoint = "https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json";
-
 fetch(endpoint)
-    .then((response) => response.json())
-    .then((data) => document.querySelector('.row').innerHTML = data.map(sanitizePostData).map(generateCard).join('\n'))
-    .catch((err) => console.log(err));
+  .then((response) => response.json())
+  .then((data) => document.querySelector('.row').innerHTML = data.map(sanitizePostData).map(generateCard).join('\n'))
+  .catch((err) => console.log(err));

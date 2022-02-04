@@ -6,7 +6,7 @@ function sanitizePostData(rawPost) {
         topic: rawPost._embedded["wp:term"].filter(x => x.some(y => y.taxonomy == 'topic'))[0]
             ?
             rawPost._embedded["wp:term"].filter(x => x.some(y => y.taxonomy == 'topic'))[0][0].name
-            : 'No Topic',
+            : 'Miscellaenous',
         postType: 'Article',
         link: rawPost.link,
         imageSource: rawPost.featured_media,

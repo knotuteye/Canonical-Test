@@ -23,11 +23,11 @@ function sanitizePostData(rawPost) {
 
 function generateCard(post) {
     return `
-          <div class="card-box col-4">
-            <header class="card-header">
+          <div class="card col-4">
+            <header>
               <h3 class="p-muted-heading u-no-margin--bottom">${post.topic}</h3>
             </header>
-            <div class="p-card__content card-body">
+            <div class="p-card__content body">
               <div class="">
                 <a href="${post.link}">
                   <img
@@ -48,7 +48,7 @@ function generateCard(post) {
                   on ${post.date}</em>
               </p>
             </div>
-            <p class="p-card__footer card-footer">${post.postType}</p>
+            <p class="p-card__footer footer">${post.postType}</p>
           </div>
       `
 }

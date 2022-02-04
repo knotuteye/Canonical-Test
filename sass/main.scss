@@ -15,7 +15,7 @@ $card-shadow: 0 1px 1px 0 rgb(0 0 0 / 15%), 0 2px 2px -1px rgb(0 0 0 / 15%),
   padding: 1rem 0.5rem;
 }
 
-.card-box {
+.card {
   box-shadow: $card-shadow;
   display: flex !important;
   flex-direction: column;
@@ -23,21 +23,21 @@ $card-shadow: 0 1px 1px 0 rgb(0 0 0 / 15%), 0 2px 2px -1px rgb(0 0 0 / 15%),
   margin-bottom: 1.5rem;
   overflow: auto;
   border-radius: 0.125rem;
-}
 
-.card-header {
-  border-top: 3px solid $border-canonical;
-  border-radius: 2px;
-  padding: 1rem 1rem 0.5rem;
-}
+  header {
+    border-top: 3px solid $border-canonical;
+    border-radius: 2px;
+    padding: 1rem 1rem 0.5rem;
+  }
 
-.card-body {
-  @include dotted-border();
-  height: 100%;
-}
-
-.card-footer {
-  @include dotted-border();
-  font-size: 0.875rem;
-  max-width: 100%;
+  .body {
+    @include dotted-border();
+    height: 100%;
+  }
+  
+  .footer {
+    @include dotted-border();
+    font-size: 0.875rem;
+    max-width: 100%;
+  }
 }

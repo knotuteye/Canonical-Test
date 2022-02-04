@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "vanilla-framework": "^3.0.1"
+  },
+  "devDependencies": {
+    "minify": "^8.0.3",
+    "rimraf": "^3.0.2",
+    "serve": "^13.0.2"
   }
 }

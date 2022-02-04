@@ -52,3 +52,9 @@ function generateCard(post) {
           </div>
       `
 }
+
+const endpoint = "https://people.canonical.com/~anthonydillon/wp-json/wp/v2/posts.json";
+
+fetch(endpoint)
+    .then((response) => response.json())
+    .then((data) => document.querySelector('.row').innerHTML = data.map(sanitizePost).map(generateCard).join('\n'));

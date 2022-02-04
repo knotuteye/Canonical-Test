@@ -1,0 +1,43 @@
+// Import Vanilla framework
+@import "../node_modules/vanilla-framework/";
+
+// Include all of Vanilla Framework
+@include vanilla;
+
+$border-gray: #d9d9d9;
+$border-canonical: #a87ca0;
+$card-shadow: 0 1px 1px 0 rgb(0 0 0 / 15%), 0 2px 2px -1px rgb(0 0 0 / 15%),
+  0 0 3px 0 rgb(0 0 0 / 20%);
+
+@mixin dotted-border {
+  border-top: 1px dotted $border-gray;
+  margin: 0 0.5rem;
+  padding: 1rem 0.5rem;
+}
+
+.card-box {
+  box-shadow: $card-shadow;
+  display: flex !important;
+  flex-direction: column;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  overflow: auto;
+  border-radius: 0.125rem;
+}
+
+.card-header {
+  border-top: 3px solid $border-canonical;
+  border-radius: 2px;
+  padding: 1rem 1rem 0.5rem;
+}
+
+.card-body {
+  @include dotted-border();
+  height: 100%;
+}
+
+.card-footer {
+  @include dotted-border();
+  font-size: 0.875rem;
+  max-width: 100%;
+}

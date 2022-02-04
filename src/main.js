@@ -23,7 +23,7 @@ function sanitizePostData(rawPost) {
 
 function generateCard(post) {
     return `
-          <div class="card col-4">
+          <div class="p-card--highlighted col-4">
             <header>
               <h3 class="p-muted-heading u-no-margin--bottom">${post.topic}</h3>
             </header>

@@ -6,8 +6,6 @@
 
 $border-gray: #d9d9d9;
 $border-canonical: #a87ca0;
-$card-shadow: 0 1px 1px 0 rgb(0 0 0 / 15%), 0 2px 2px -1px rgb(0 0 0 / 15%),
-  0 0 3px 0 rgb(0 0 0 / 20%);
 
 @mixin dotted-border {
   border-top: 1px dotted $border-gray;
@@ -15,8 +13,7 @@ $card-shadow: 0 1px 1px 0 rgb(0 0 0 / 15%), 0 2px 2px -1px rgb(0 0 0 / 15%),
   padding: 1rem 0.5rem;
 }
 
-.card {
-  box-shadow: $card-shadow;
+.p-card--highlighted {
   display: flex !important;
   flex-direction: column;
   padding: 0;

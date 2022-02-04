@@ -4,7 +4,6 @@ const endpoint = "https://people.canonical.com/~anthonydillon/wp-json/wp/v2/post
 /**
  * This function accepts a raw post object from the API response and returns a formatted post object with convenient fields.
  * @param rawPost the post object from the API response
- * @returns 
  */
 function sanitizePostData(rawPost) {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]

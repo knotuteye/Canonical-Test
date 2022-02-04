@@ -14,7 +14,7 @@ $border-canonical: #a87ca0;
 }
 
 .p-card--highlighted {
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   padding: 0;
   margin-bottom: 1.5rem;

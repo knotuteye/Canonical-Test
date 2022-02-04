@@ -6,5 +6,9 @@
     "minify": "^8.0.3",
     "rimraf": "^3.0.2",
     "serve": "^13.0.2"
+  },
+  "scripts": {
+    "build": "yarn install && rimraf public && sass sass/main.scss public/css/styles.css && minify public/css/styles.css > public/css/styles.min.css && mkdir public/js && minify src/main.js > public/js/prod.js && cp index.html public/index.html",
+    "start": "serve public"
   }
 }
